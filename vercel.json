@@ -4,6 +4,6 @@
   "buildCommand": null,
   "outputDirectory": ".",
   "rewrites": [
-    { "source": "/solicitud-:slug*", "destination": "/solicitud.html" }
+    { "source": "/solicitud-:slug", "destination": "/solicitud.html" }
   ]
 }
