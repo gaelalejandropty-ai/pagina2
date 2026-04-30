@@ -1,10 +1,8 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
   "buildCommand": null,
   "outputDirectory": ".",
+  "trailingSlash": false,
   "rewrites": [
-    { "source": "/solicitud-:slug(.+)", "destination": "/solicitud.html" },
-    { "source": "/solicitud/:slug(.+)", "destination": "/solicitud.html" }
+    { "source": "/solicitud-:slug", "destination": "/solicitud.html" }
   ]
 }
