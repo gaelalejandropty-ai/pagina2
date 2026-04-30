@@ -13,8 +13,26 @@ window.SOLICITUDES = {
         oficinaEntrega: 'COLEGIO EPISCOPAL -SANTIAGO',
         tramite: 'Cédula de escolar por primera vez',
         estado: 'EN PROCESO',
+        estadoColor: 'amarillo',
         foto: '/public/foto1.png',
         slugFecha: '30-04-2026'
+    },
+    '23542209': {
+        numero: '23542209',
+        cedula: '8-1093-391',
+        nombres: 'Ana Elena',
+        apellidos: 'Name Chi',
+        sexo: 'Femenino',
+        tipoSangre: 'O+',
+        donanteOrganos: 'No',
+        fechaSolicitud: '28 de abril de 2026',
+        fechaVencimiento: '28 de mayo de 2026',
+        oficinaEntrega: 'EL DORADO -TRIADA',
+        tramite: 'Cédula de escolar por primera vez',
+        estado: 'PARA RETIRAR',
+        estadoColor: 'verde',
+        foto: '/public/foto2.png',
+        slugFecha: '28-04-2026'
     }
 };
 

@@ -129,9 +129,6 @@
         }
 
         .estado-box {
-            border: 2px solid #f0ad4e;
-            background: #fcf8e3;
-            color: #8a6d3b;
             padding: 25px 20px;
             text-align: center;
             font-weight: bold;
@@ -139,12 +136,34 @@
             letter-spacing: 1px;
             border-radius: 4px;
             margin-top: 10px;
+            border: 2px solid #ccc;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .estado-box.estado-amarillo {
+            border-color: #f0ad4e;
+            background: #fcf8e3;
+            color: #8a6d3b;
+        }
+
+        .estado-box.estado-verde {
+            border-color: #5cb85c;
+            background: #dff0d8;
+            color: #3c763d;
+        }
+
+        .estado-box.estado-rojo {
+            border-color: #d9534f;
+            background: #f2dede;
+            color: #a94442;
         }
 
         .estado-box .estado-label {
             display: block;
             font-size: 14px;
-            color: #555;
+            color: inherit;
+            opacity: .75;
             font-weight: normal;
             letter-spacing: 0;
             margin-bottom: 6px;
@@ -261,7 +280,7 @@
                     <tr><td class="label">N° DE SOLICITUD:</td><td class="value">${solicitud.numero}</td></tr>
                 </table>
 
-                <div class="estado-box">
+                <div class="estado-box estado-${solicitud.estadoColor || 'amarillo'}">
                     <span class="estado-label">ESTADO</span>
                     ${solicitud.estado}
                 </div>
