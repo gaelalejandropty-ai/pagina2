@@ -144,6 +144,18 @@
             color: #000;
         }
 
+        .alert-error {
+            max-width: 900px;
+            margin: 0 auto 15px;
+            padding: 10px 15px;
+            background: #f2dede;
+            border: 1px solid #ebccd1;
+            color: #a94442;
+            border-radius: 4px;
+            display: none;
+        }
+        .alert-error.show { display: block; }
+
         @media (max-width: 600px) {
             h1.page-title {
                 font-size: 22px;
@@ -162,6 +174,8 @@
 
     <main class="main-content">
         <h1 class="page-title">Validación de Solicitudes de<br>Cédula Estudiantil</h1>
+
+        <div id="errorBox" class="alert-error">No se encontró ninguna solicitud con esos datos. Verifique la cédula y el número de solicitud.</div>
 
         <form class="form-card" id="validationForm" onsubmit="return false;">
             <div class="form-group">
@@ -185,6 +199,32 @@
     <footer class="site-footer">
         2026&copy; Colegio Episcopal
     </footer>
+
+    <script src="/data.js"></script>
+    <script>
+        (function () {
+            const form = document.getElementById('validationForm');
+            const errorBox = document.getElementById('errorBox');
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                errorBox.classList.remove('show');
+
+                const cedula = document.getElementById('cedula').value;
+                const numero = document.getElementById('solicitud').value;
+
+                const solicitud = window.buscarSolicitud(cedula, numero);
+                if (!solicitud) {
+                    errorBox.classList.add('show');
+                    return;
+                }
+
+                const slug = window.slugSolicitud(solicitud);
+                sessionStorage.setItem('solicitud:' + solicitud.numero, JSON.stringify(solicitud));
+                window.location.href = '/' + slug;
+            });
+        })();
+    </script>
 
 </body>
 </html>

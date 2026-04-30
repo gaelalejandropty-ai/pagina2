@@ -1,0 +1,38 @@
+// Mock de solicitudes de cédula estudiantil
+window.SOLICITUDES = {
+    '23542208': {
+        numero: '23542208',
+        cedula: '9-774-1242',
+        nombres: 'Christopher Abiel',
+        apellidos: 'Funes Diaz',
+        sexo: 'Masculino',
+        tipoSangre: '-',
+        donanteOrganos: 'No',
+        fechaSolicitud: '30 de abril de 2026',
+        fechaVencimiento: '30 de mayo de 2026',
+        oficinaEntrega: 'COLEGIO EPISCOPAL -SANTIAGO',
+        tramite: 'Cédula de escolar por primera vez',
+        estado: 'EN PROCESO',
+        foto: '/public/foto1.png',
+        slugFecha: '30-04-2026'
+    }
+};
+
+window.buscarSolicitud = function (cedula, numero) {
+    const s = window.SOLICITUDES[String(numero || '').trim()];
+    if (!s) return null;
+    const cedulaInput = String(cedula || '').trim();
+    if (cedulaInput !== s.cedula) return null;
+    return s;
+};
+
+window.slugSolicitud = function (s) {
+    const acentos = { 'á':'a','é':'e','í':'i','ó':'o','ú':'u','ñ':'n','ü':'u' };
+    const nombre = (s.nombres + ' ' + s.apellidos)
+        .toLowerCase()
+        .replace(/[áéíóúñü]/g, c => acentos[c] || c)
+        .replace(/[^a-z0-9\s-]/g, '')
+        .trim()
+        .replace(/\s+/g, '-');
+    return 'solicitud-' + s.numero + '-' + nombre + '-' + s.slugFecha;
+};

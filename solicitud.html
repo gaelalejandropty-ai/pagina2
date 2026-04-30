@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constancia de Solicitud de Cédula</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            color: #333;
+            background: #ffffff;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        .site-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e7e7e7;
+            padding: 10px 20px;
+            min-height: 50px;
+        }
+
+        .site-header img.logo {
+            height: 45px;
+            width: auto;
+            display: inline-block;
+        }
+
+        /* Main */
+        .main-content {
+            flex: 1;
+            padding: 30px 15px 60px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .center-logo {
+            text-align: center;
+            margin: 10px 0 20px;
+        }
+
+        .center-logo img {
+            height: 110px;
+            width: auto;
+        }
+
+        h1.title {
+            text-align: center;
+            color: #2980b9;
+            font-weight: bold;
+            font-size: 26px;
+            line-height: 1.4;
+            margin: 10px 0 30px;
+        }
+
+        .layout {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .layout .info {
+            flex: 1;
+        }
+
+        .layout .photo {
+            width: 200px;
+            text-align: center;
+        }
+
+        .layout .photo img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            background: #f5f5f5;
+        }
+
+        .layout .photo .photo-caption {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        h2.section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 1px solid #e3e3e3;
+            padding-bottom: 6px;
+            margin: 0 0 12px;
+        }
+
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+        }
+
+        table.data-table td {
+            padding: 6px 8px;
+            vertical-align: top;
+            border-bottom: 1px dashed #eee;
+        }
+
+        table.data-table td.label {
+            width: 45%;
+            font-weight: bold;
+            color: #555;
+        }
+
+        table.data-table td.value {
+            color: #222;
+        }
+
+        .estado-box {
+            border: 2px solid #f0ad4e;
+            background: #fcf8e3;
+            color: #8a6d3b;
+            padding: 25px 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 22px;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .estado-box .estado-label {
+            display: block;
+            font-size: 14px;
+            color: #555;
+            font-weight: normal;
+            letter-spacing: 0;
+            margin-bottom: 6px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #2196f3;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        /* Dark band */
+        .dark-band {
+            background: #333333;
+            height: 60px;
+            width: 100%;
+        }
+
+        .site-footer {
+            background: #ffffff;
+            padding: 10px 20px;
+            font-size: 13px;
+            color: #000;
+        }
+
+        .not-found {
+            text-align: center;
+            padding: 60px 20px;
+            color: #a94442;
+            font-size: 16px;
+        }
+
+        @media (max-width: 700px) {
+            .layout { flex-direction: column-reverse; }
+            .layout .photo { width: 180px; margin: 0 auto; }
+            h1.title { font-size: 20px; }
+            .estado-box { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <a href="/"><img src="/public/colegiotribunal.svg" alt="Colegio Episcopal" class="logo"></a>
+    </header>
+
+    <main class="main-content">
+        <div class="container" id="contenido"></div>
+    </main>
+
+    <div class="dark-band"></div>
+
+    <footer class="site-footer">
+        2026&copy; Colegio Episcopal
+    </footer>
+
+    <script src="/data.js"></script>
+    <script>
+        (function () {
+            const contenido = document.getElementById('contenido');
+            const path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
+            const match = path.match(/^solicitud-(\d+)-/);
+
+            let solicitud = null;
+            if (match) {
+                const numero = match[1];
+                const cached = sessionStorage.getItem('solicitud:' + numero);
+                if (cached) {
+                    try { solicitud = JSON.parse(cached); } catch (e) {}
+                }
+                if (!solicitud && window.SOLICITUDES && window.SOLICITUDES[numero]) {
+                    solicitud = window.SOLICITUDES[numero];
+                }
+            }
+
+            if (!solicitud) {
+                contenido.innerHTML = '<div class="not-found">Solicitud no encontrada. <a href="/">Volver al inicio</a></div>';
+                return;
+            }
+
+            contenido.innerHTML = `
+                <div class="center-logo">
+                    <img src="/public/colegiotribunal.svg" alt="Colegio Episcopal">
+                </div>
+                <h1 class="title">CONSTANCIA DE SOLICITUD DE CÉDULA</h1>
+
+                <div class="layout">
+                    <div class="info">
+                        <h2 class="section-title">Datos del Titular</h2>
+                        <table class="data-table">
+                            <tr><td class="label">CÉDULA:</td><td class="value">${solicitud.cedula}</td></tr>
+                            <tr><td class="label">NOMBRES:</td><td class="value">${solicitud.nombres}</td></tr>
+                            <tr><td class="label">APELLIDOS:</td><td class="value">${solicitud.apellidos}</td></tr>
+                            <tr><td class="label">SEXO:</td><td class="value">${solicitud.sexo}</td></tr>
+                            <tr><td class="label">TIPO DE SANGRE:</td><td class="value">${solicitud.tipoSangre}</td></tr>
+                            <tr><td class="label">DONANTE DE ÓRGANOS:</td><td class="value">${solicitud.donanteOrganos}</td></tr>
+                        </table>
+                    </div>
+                    <div class="photo">
+                        <img src="${solicitud.foto}" alt="Foto del titular" onerror="this.style.background='#eee';this.alt='Foto no disponible';">
+                        <div class="photo-caption">Foto del titular</div>
+                    </div>
+                </div>
+
+                <h2 class="section-title">Datos de la Solicitud</h2>
+                <table class="data-table">
+                    <tr><td class="label">FECHA DE SOLICITUD:</td><td class="value">${solicitud.fechaSolicitud}</td></tr>
+                    <tr><td class="label">FECHA DE VENCIMIENTO:</td><td class="value">${solicitud.fechaVencimiento}</td></tr>
+                    <tr><td class="label">OFICINA DE ENTREGA:</td><td class="value">${solicitud.oficinaEntrega}</td></tr>
+                    <tr><td class="label">TRÁMITE REALIZADO:</td><td class="value">${solicitud.tramite}</td></tr>
+                    <tr><td class="label">N° DE SOLICITUD:</td><td class="value">${solicitud.numero}</td></tr>
+                </table>
+
+                <div class="estado-box">
+                    <span class="estado-label">ESTADO</span>
+                    ${solicitud.estado}
+                </div>
+
+                <a class="back-link" href="/">&laquo; Volver a buscar otra solicitud</a>
+            `;
+        })();
+    </script>
+
+</body>
+</html>
