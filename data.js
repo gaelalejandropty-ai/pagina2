@@ -17,8 +17,8 @@ window.SOLICITUDES = {
         foto: '/public/foto1.png',
         slugFecha: '30-04-2026'
     },
-    '23542209': {
-        numero: '23542209',
+    '13644209': {
+        numero: '13644209',
         cedula: '8-1093-391',
         nombres: 'Ana Elena',
         apellidos: 'Name Chi',
