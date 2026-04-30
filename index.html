@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Solicitudes de Cédula Estudiantil</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            color: #333;
+            background: #ffffff;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .site-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e7e7e7;
+            padding: 10px 20px;
+            min-height: 50px;
+        }
+
+        .site-header img.logo {
+            max-height: 30px;
+            display: inline-block;
+        }
+
+        /* Main content */
+        .main-content {
+            flex: 1;
+            padding: 30px 15px 60px;
+        }
+
+        h1.page-title {
+            text-align: center;
+            color: #2980b9;
+            font-weight: bold;
+            font-size: 30px;
+            line-height: 1.4;
+            margin: 20px 0 40px;
+        }
+
+        .form-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #f9f9f9;
+            border: 1px solid #e3e3e3;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+            padding: 25px 30px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: normal;
+            margin-bottom: 6px;
+            color: #333;
+        }
+
+        .form-control {
+            width: 220px;
+            max-width: 100%;
+            padding: 6px 10px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            outline: none;
+            transition: border-color .15s ease-in-out;
+        }
+
+        .form-control:focus {
+            border-color: #66afe9;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+        }
+
+        .form-actions {
+            text-align: right;
+            margin-top: 15px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            color: #fff;
+            background-color: #2196f3;
+            background-image: linear-gradient(to bottom, #2196f3 0%, #1e88e5 100%);
+            border: 1px solid #1976d2;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+            text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #1e88e5;
+            background-image: linear-gradient(to bottom, #1e88e5 0%, #1976d2 100%);
+        }
+
+        .btn-primary:active {
+            background-image: none;
+            background-color: #1976d2;
+            box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+        }
+
+        /* Dark band */
+        .dark-band {
+            background: #333333;
+            height: 60px;
+            width: 100%;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #ffffff;
+            padding: 10px 20px;
+            font-size: 13px;
+            color: #000;
+        }
+
+        @media (max-width: 600px) {
+            h1.page-title {
+                font-size: 22px;
+            }
+            .form-card {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <img src="logo.png" alt="logo" class="logo">
+    </header>
+
+    <main class="main-content">
+        <h1 class="page-title">Validación de Solicitudes de<br>Cédula Estudiantil</h1>
+
+        <form class="form-card" id="validationForm" onsubmit="return false;">
+            <div class="form-group">
+                <label for="cedula">Cédula:</label>
+                <input type="text" id="cedula" name="cedula" class="form-control" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label for="solicitud">Número Solicitud:</label>
+                <input type="text" id="solicitud" name="solicitud" class="form-control" autocomplete="off">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Buscar Solicitud</button>
+            </div>
+        </form>
+    </main>
+
+    <div class="dark-band"></div>
+
+    <footer class="site-footer">
+        2026&copy; Colegio Episcopal
+    </footer>
+
+</body>
+</html>

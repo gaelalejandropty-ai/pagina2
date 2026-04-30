@@ -1,0 +1,10 @@
+{
+  "name": "papelon-cedula-estudiantil",
+  "version": "1.0.0",
+  "description": "Validación de Solicitudes de Cédula Estudiantil - Colegio Episcopal",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build needed'"
+  }
+}
