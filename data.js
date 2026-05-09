@@ -33,6 +33,23 @@ window.SOLICITUDES = {
         estadoColor: 'verde',
         foto: '/public/foto2.png',
         slugFecha: '28-04-2026'
+    },
+    '13544290': {
+        numero: '13544290',
+        cedula: '8-1072-2460',
+        nombres: 'Andrea Victoria',
+        apellidos: 'Guerra Ramos',
+        sexo: 'Femenino',
+        tipoSangre: '-',
+        donanteOrganos: 'No',
+        fechaSolicitud: '7 de mayo de 2026',
+        fechaVencimiento: '7 de junio de 2026',
+        oficinaEntrega: 'EL DORADO -TRIADA',
+        tramite: 'Cédula de nacional por primera vez',
+        estado: 'EN PROCESO',
+        estadoColor: 'amarillo',
+        foto: '/public/foto3.png',
+        slugFecha: '07-05-2026'
     }
 };
 
