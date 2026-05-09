@@ -1,4 +1,5 @@
 // Mock de solicitudes de cédula estudiantil
+// Última actualización: 2026-05-09
 window.SOLICITUDES = {
     '23542208': {
         numero: '23542208',
